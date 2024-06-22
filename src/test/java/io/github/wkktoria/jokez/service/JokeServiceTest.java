@@ -45,4 +45,16 @@ class JokeServiceTest {
         // then
         Assertions.assertNotNull(apiResponse, "API response is null");
     }
+
+    @Test
+    void speakJoke() {
+        // given
+        JokeService jokeService = new JokeService();
+
+        // when
+        boolean jokeSpoken = jokeService.speakJoke("This is a joke!");
+
+        // then
+        Assertions.assertTrue(jokeSpoken, "Joke has not be spoken");
+    }
 }

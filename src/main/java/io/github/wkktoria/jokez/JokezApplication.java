@@ -12,5 +12,6 @@ class JokezApplication {
         JokeApiResponse apiResponse = jokeController.randomJoke();
         String joke = apiResponse.getSetup() + "\n" + apiResponse.getPunchline();
         System.out.println(joke);
+        jokeController.speakJoke(joke);
     }
 }

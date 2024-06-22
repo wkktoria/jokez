@@ -1,6 +1,8 @@
 package io.github.wkktoria.jokez.service;
 
 import com.google.gson.Gson;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import io.github.wkktoria.jokez.api.JokeApiResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,6 +32,24 @@ public class JokeService {
 
         LOGGER.info("randomJoke(...) = null");
         return null;
+    }
+
+    public boolean speakJoke(final String joke) {
+        LOGGER.info("speakJoke(joke = {})", joke);
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+        Voice voice = VoiceManager.getInstance().getVoice("kevin");
+        voice.allocate();
+
+        try {
+            voice.speak(joke);
+            LOGGER.info("speakJoke(...) = true");
+            return true;
+        } catch (Exception e) {
+            LOGGER.error("Unable to speak joke", e);
+        }
+
+        LOGGER.info("speakJoke(...) = false");
+        return false;
     }
 
     public String getResponseBody(final String url) throws IOException {

@@ -20,4 +20,11 @@ public class JokeController {
         LOGGER.info("randomJoke(...) = {}", apiResponse);
         return apiResponse;
     }
+
+    public boolean speakJoke(final String joke) {
+        LOGGER.info("speakJoke(joke = {})", joke);
+        boolean jokeSpoken = jokeService.speakJoke(joke);
+        LOGGER.info("speakJoke(...) = {}", jokeSpoken);
+        return jokeSpoken;
+    }
 }
