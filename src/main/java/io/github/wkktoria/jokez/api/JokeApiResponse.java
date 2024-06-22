@@ -73,4 +73,15 @@ public class JokeApiResponse {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+
+    @Override
+    public String toString() {
+        return "JokeApiResponse{" +
+                "type='" + type + '\'' +
+                ", setup='" + setup + '\'' +
+                ", punchline='" + punchline + '\'' +
+                ", id=" + id +
+                ", additionalProperties=" + additionalProperties +
+                '}';
+    }
 }
