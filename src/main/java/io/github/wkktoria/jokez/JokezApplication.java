@@ -2,6 +2,7 @@ package io.github.wkktoria.jokez;
 
 import io.github.wkktoria.jokez.api.JokeApiResponse;
 import io.github.wkktoria.jokez.controller.JokeController;
+import io.github.wkktoria.jokez.controller.VoiceController;
 import io.github.wkktoria.jokez.model.Joke;
 import io.github.wkktoria.jokez.service.JokeService;
 import javafx.application.Application;
@@ -17,6 +18,8 @@ public class JokezApplication extends Application {
     private final JokeService jokeService = new JokeService();
     private final JokeController jokeController = new JokeController(jokeService);
 
+    private final VoiceController voiceController = new VoiceController();
+
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -29,12 +32,8 @@ public class JokezApplication extends Application {
         return new Joke(setup, punchline);
     }
 
-    private void speakJoke(final String joke) {
-        jokeController.speakJoke(joke);
-    }
-
     @Override
-    public void start(final Stage stage) throws Exception {
+    public void start(final Stage stage) {
         stage.setTitle("Jokez");
 
         VBox layout = new VBox();
@@ -64,7 +63,7 @@ public class JokezApplication extends Application {
                 return;
             }
 
-            speakJoke(setup + "\n" + punchline);
+            voiceController.speak(setup + "\n" + punchline);
         });
 
         buttons.getChildren().addAll(randomJokeButton, speakJokeButton);
