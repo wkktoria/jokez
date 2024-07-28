@@ -41,8 +41,40 @@ public class JokezApplication extends Application {
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(20);
 
+        HBox setupBox = new HBox();
+        setupBox.setAlignment(Pos.CENTER);
+        setupBox.setSpacing(20);
+
         Label setupLabel = new Label("Get a random joke!");
+        Button speakSetupButton = new Button("Speak");
+
+        speakSetupButton.setOnAction(actionEvent -> {
+            final String setup = setupLabel.getText();
+
+            if (setup != null && !setup.isEmpty()) {
+                voiceController.speak(setup);
+            }
+        });
+
+        setupBox.getChildren().addAll(setupLabel, speakSetupButton);
+
+        HBox punchlineBox = new HBox();
+        punchlineBox.setAlignment(Pos.CENTER);
+        punchlineBox.setSpacing(20);
+
         Label punchlineLabel = new Label("");
+        Button speakPunchlineButton = new Button("Speak");
+
+        speakPunchlineButton.setOnAction(actionEvent -> {
+            final String punchline = punchlineLabel.getText();
+
+            if (punchline != null && !punchline.isEmpty()) {
+                voiceController.speak(punchline);
+            }
+        });
+
+        punchlineBox.getChildren().addAll(punchlineLabel, speakPunchlineButton);
+
         Button randomJokeButton = new Button("Random joke");
         Button speakJokeButton = new Button("Speak joke");
 
@@ -53,18 +85,17 @@ public class JokezApplication extends Application {
         });
 
         speakJokeButton.setOnAction(actionEvent -> {
-            String setup = setupLabel.getText();
-            String punchline = punchlineLabel.getText();
+            final String setup = setupLabel.getText();
+            final String punchline = punchlineLabel.getText();
 
-            if ((setup == null || setup.isEmpty()) || (punchline == null || punchline.isEmpty())) {
-                return;
+            if ((setup != null && !setup.isEmpty()) && (punchline != null && !punchline.isEmpty())) {
+                voiceController.speak(setup + "\n" + punchline);
+
             }
-
-            voiceController.speak(setup + "\n" + punchline);
         });
 
         buttons.getChildren().addAll(randomJokeButton, speakJokeButton);
-        layout.getChildren().addAll(setupLabel, punchlineLabel, buttons);
+        layout.getChildren().addAll(setupBox, punchlineBox, buttons);
 
         Scene scene = new Scene(layout, 600, 200);
 
