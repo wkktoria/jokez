@@ -52,8 +52,8 @@ public class JokezApplication extends Application {
 
         randomJokeButton.setOnAction(actionEvent -> {
             Joke joke = getJoke();
-            setupLabel.setText(joke.getSetup());
-            punchlineLabel.setText(joke.getPunchline());
+            setupLabel.setText(joke.setup());
+            punchlineLabel.setText(joke.punchline());
         });
 
         speakJokeButton.setOnAction(actionEvent -> {
