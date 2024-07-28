@@ -4,7 +4,6 @@ import io.github.wkktoria.jokez.api.JokeApiResponse;
 import io.github.wkktoria.jokez.controller.JokeController;
 import io.github.wkktoria.jokez.controller.VoiceController;
 import io.github.wkktoria.jokez.model.Joke;
-import io.github.wkktoria.jokez.service.JokeService;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,9 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class JokezApplication extends Application {
-    private final JokeService jokeService = new JokeService();
-    private final JokeController jokeController = new JokeController(jokeService);
-
+    private final JokeController jokeController = new JokeController();
     private final VoiceController voiceController = new VoiceController();
 
     public static void main(String[] args) {

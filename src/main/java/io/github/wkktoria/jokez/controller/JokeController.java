@@ -10,6 +10,10 @@ public class JokeController {
 
     private final JokeService jokeService;
 
+    public JokeController() {
+        this.jokeService = new JokeService();
+    }
+
     public JokeController(final JokeService jokeService) {
         this.jokeService = jokeService;
     }
