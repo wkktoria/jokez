@@ -53,12 +53,12 @@ public class JokeService {
     }
 
     public String getResponseBody(final String url) throws IOException {
-        LOGGER.info("run(url = {})", url);
+        LOGGER.info("getResponseBody(url = {})", url);
         Request request = new Request.Builder().url(url).build();
 
         try (Response response = client.newCall(request).execute()) {
             String body = response.body() != null ? response.body().string() : null;
-            LOGGER.info("run(...) = {}", body);
+            LOGGER.info("getResponseBody(...) = {}", body);
             return body;
         }
     }
